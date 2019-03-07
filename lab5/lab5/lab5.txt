@@ -1,0 +1,1 @@
+./Debug/keypad.c.o ./Debug/IRQ.c.o ./Debug/delays.c.o ./Debug/main.c.o ./Debug/ball.c.o ./Debug/graphicdisplay.c.o
