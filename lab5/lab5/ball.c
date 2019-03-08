@@ -1,5 +1,4 @@
-#include "defines.h"
-#include "structs.h"
+#include "rendering.h"
 
 GEOMETRY ball_geometry = 
 {
@@ -12,24 +11,6 @@ GEOMETRY ball_geometry =
 		{3, 2}
 	}
 };
-
-
-void set_object_speed(POBJECT o, int speedX, int speedY){
-	o->dirX = speedX;
-	o->dirY = speedY;
-}
-
-void draw_object(POBJECT o){
-	for(int i = 0; i < o->geo->numPoints; i++){
-		pixel(o->posX + o->geo->px[i].x, o->posY + o->geo->px[i].y, 1);
-	}
-}
-
-void clear_object(POBJECT o){
-	for(int i = 0; i < o->geo->numPoints; i++){
-		pixel(o->posX + o->geo->px[i].x, o->posY + o->geo->px[i].y, 0);
-	}
-}
 
 
 void move_object(POBJECT object){

@@ -42,17 +42,13 @@ void init_app(void){
 	
 	//port init
 	GPIO_E.moder = 0x55555555; //15-0 utgång. För LCD
-	GPIO_D.moder = 0x00005555; //7-0 utgång. För keypad
+	GPIO_D.moder = 0x55005555; //15-12 och 7-0 utgång. För keypad
 	GPIO_D.otyper = 0x0000; //onödig tilldelning?
-	GPIO_D.pupdr = 0x55aa0000;
+	GPIO_D.pupdr = 0x55aa0000; 
 	
 	systick_flag = 0;
 	second_count = 0;
 }
-
-
-
-
 
 
 
