@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Keivan Saberian
-Date                   :=08/03/2019
+Date                   :=10/03/2019
 CodeLitePath           :="/Users/keivan/Library/Application Support/CodeLite"
 LinkerName             :=$(CodeLiteDir)/tools/gcc-arm/bin/arm-none-eabi-gcc
 SharedObjectLinkerName :=$(CodeLiteDir)/tools/gcc-arm/arm-none-eabi-g++.exe -shared -fPIC
@@ -64,7 +64,7 @@ ARM_V6LIB:=$(CodeLiteDir)/tools/gcc-arm/arm-none-eabi/lib/thumb/v6-m
 ARM_GCC_V6LIB:=$(CodeLiteDir)/tools/gcc-arm/lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m
 ARM_M4FPLIB:=$(CodeLiteDir)/tools/gcc-arm/arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard
 ARM_GCC_M4FPLIB:=$(CodeLiteDir)/tools/gcc-arm/lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m
-Objects0=$(IntermediateDirectory)/Obstacles.c$(ObjectSuffix) $(IntermediateDirectory)/keypad.c$(ObjectSuffix) $(IntermediateDirectory)/delays.c$(ObjectSuffix) $(IntermediateDirectory)/rendering.c$(ObjectSuffix) $(IntermediateDirectory)/IRQ.c$(ObjectSuffix) $(IntermediateDirectory)/graphicdisplay.c$(ObjectSuffix) $(IntermediateDirectory)/ball.c$(ObjectSuffix) $(IntermediateDirectory)/main.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/delays.c$(ObjectSuffix) $(IntermediateDirectory)/graphicdisplay.c$(ObjectSuffix) $(IntermediateDirectory)/rendering.c$(ObjectSuffix) $(IntermediateDirectory)/IRQ.c$(ObjectSuffix) $(IntermediateDirectory)/ascii.c$(ObjectSuffix) $(IntermediateDirectory)/ball.c$(ObjectSuffix) $(IntermediateDirectory)/main.c$(ObjectSuffix) $(IntermediateDirectory)/Obstacles.c$(ObjectSuffix) $(IntermediateDirectory)/keypad.c$(ObjectSuffix) 
 
 
 
@@ -101,22 +101,6 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/Obstacles.c$(ObjectSuffix): Obstacles.c $(IntermediateDirectory)/Obstacles.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/Users/keivan/Downloads/Chalmers/MOP/lab5/lab5/Obstacles.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Obstacles.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Obstacles.c$(DependSuffix): Obstacles.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Obstacles.c$(ObjectSuffix) -MF$(IntermediateDirectory)/Obstacles.c$(DependSuffix) -MM Obstacles.c
-
-$(IntermediateDirectory)/Obstacles.c$(PreprocessSuffix): Obstacles.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Obstacles.c$(PreprocessSuffix) Obstacles.c
-
-$(IntermediateDirectory)/keypad.c$(ObjectSuffix): keypad.c $(IntermediateDirectory)/keypad.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/Users/keivan/Downloads/Chalmers/MOP/lab5/lab5/keypad.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/keypad.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/keypad.c$(DependSuffix): keypad.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/keypad.c$(ObjectSuffix) -MF$(IntermediateDirectory)/keypad.c$(DependSuffix) -MM keypad.c
-
-$(IntermediateDirectory)/keypad.c$(PreprocessSuffix): keypad.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/keypad.c$(PreprocessSuffix) keypad.c
-
 $(IntermediateDirectory)/delays.c$(ObjectSuffix): delays.c $(IntermediateDirectory)/delays.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "/Users/keivan/Downloads/Chalmers/MOP/lab5/lab5/delays.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/delays.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/delays.c$(DependSuffix): delays.c
@@ -124,6 +108,14 @@ $(IntermediateDirectory)/delays.c$(DependSuffix): delays.c
 
 $(IntermediateDirectory)/delays.c$(PreprocessSuffix): delays.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/delays.c$(PreprocessSuffix) delays.c
+
+$(IntermediateDirectory)/graphicdisplay.c$(ObjectSuffix): graphicdisplay.c $(IntermediateDirectory)/graphicdisplay.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/Users/keivan/Downloads/Chalmers/MOP/lab5/lab5/graphicdisplay.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/graphicdisplay.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/graphicdisplay.c$(DependSuffix): graphicdisplay.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/graphicdisplay.c$(ObjectSuffix) -MF$(IntermediateDirectory)/graphicdisplay.c$(DependSuffix) -MM graphicdisplay.c
+
+$(IntermediateDirectory)/graphicdisplay.c$(PreprocessSuffix): graphicdisplay.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/graphicdisplay.c$(PreprocessSuffix) graphicdisplay.c
 
 $(IntermediateDirectory)/rendering.c$(ObjectSuffix): rendering.c $(IntermediateDirectory)/rendering.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "/Users/keivan/Downloads/Chalmers/MOP/lab5/lab5/rendering.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/rendering.c$(ObjectSuffix) $(IncludePath)
@@ -141,13 +133,13 @@ $(IntermediateDirectory)/IRQ.c$(DependSuffix): IRQ.c
 $(IntermediateDirectory)/IRQ.c$(PreprocessSuffix): IRQ.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/IRQ.c$(PreprocessSuffix) IRQ.c
 
-$(IntermediateDirectory)/graphicdisplay.c$(ObjectSuffix): graphicdisplay.c $(IntermediateDirectory)/graphicdisplay.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/Users/keivan/Downloads/Chalmers/MOP/lab5/lab5/graphicdisplay.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/graphicdisplay.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/graphicdisplay.c$(DependSuffix): graphicdisplay.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/graphicdisplay.c$(ObjectSuffix) -MF$(IntermediateDirectory)/graphicdisplay.c$(DependSuffix) -MM graphicdisplay.c
+$(IntermediateDirectory)/ascii.c$(ObjectSuffix): ascii.c $(IntermediateDirectory)/ascii.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/Users/keivan/Downloads/Chalmers/MOP/lab5/lab5/ascii.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/ascii.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/ascii.c$(DependSuffix): ascii.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/ascii.c$(ObjectSuffix) -MF$(IntermediateDirectory)/ascii.c$(DependSuffix) -MM ascii.c
 
-$(IntermediateDirectory)/graphicdisplay.c$(PreprocessSuffix): graphicdisplay.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/graphicdisplay.c$(PreprocessSuffix) graphicdisplay.c
+$(IntermediateDirectory)/ascii.c$(PreprocessSuffix): ascii.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/ascii.c$(PreprocessSuffix) ascii.c
 
 $(IntermediateDirectory)/ball.c$(ObjectSuffix): ball.c $(IntermediateDirectory)/ball.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "/Users/keivan/Downloads/Chalmers/MOP/lab5/lab5/ball.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/ball.c$(ObjectSuffix) $(IncludePath)
@@ -164,6 +156,22 @@ $(IntermediateDirectory)/main.c$(DependSuffix): main.c
 
 $(IntermediateDirectory)/main.c$(PreprocessSuffix): main.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.c$(PreprocessSuffix) main.c
+
+$(IntermediateDirectory)/Obstacles.c$(ObjectSuffix): Obstacles.c $(IntermediateDirectory)/Obstacles.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/Users/keivan/Downloads/Chalmers/MOP/lab5/lab5/Obstacles.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Obstacles.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Obstacles.c$(DependSuffix): Obstacles.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Obstacles.c$(ObjectSuffix) -MF$(IntermediateDirectory)/Obstacles.c$(DependSuffix) -MM Obstacles.c
+
+$(IntermediateDirectory)/Obstacles.c$(PreprocessSuffix): Obstacles.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Obstacles.c$(PreprocessSuffix) Obstacles.c
+
+$(IntermediateDirectory)/keypad.c$(ObjectSuffix): keypad.c $(IntermediateDirectory)/keypad.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/Users/keivan/Downloads/Chalmers/MOP/lab5/lab5/keypad.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/keypad.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/keypad.c$(DependSuffix): keypad.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/keypad.c$(ObjectSuffix) -MF$(IntermediateDirectory)/keypad.c$(DependSuffix) -MM keypad.c
+
+$(IntermediateDirectory)/keypad.c$(PreprocessSuffix): keypad.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/keypad.c$(PreprocessSuffix) keypad.c
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

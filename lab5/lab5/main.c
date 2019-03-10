@@ -48,6 +48,9 @@ void init_app(void){
 	
 	systick_flag = 0;
 	second_count = 0;
+	current_points = 0;
+	DELAY_TIMER = 1000000; //tid för avbrott. vet inte vad jag ska sätta den till
+	running = 1; //spelet körs
 }
 
 
@@ -59,16 +62,47 @@ void main(void)
 	init_app();
 	graphic_initialize();
 	graphic_clear_screen();
+	delay(DELAY_TIMER);
 	
-	while (1){
-		p->move(p);
-		delay_milli(40);
-		c=keyb();
-		switch(c){
-			case 6: p->set_speed(p,2,0); break;
-			case 4: p->set_speed(p,-2,0); break;
-			case 2: p->set_speed(p,0,-2); break;
-			case 8: p->set_speed(p,0,2); break;
+	while(running){ //medan spelet körs
+		graphic_initialize(); //byt till spelskärmen
+		while (!systick_flag){ //utförs under väntetid. 
+			p->move(p);
+			delay_milli(40);
+			c=keyb();
+			switch(c){
+				case 6: p->set_speed(p,2,0); break;
+				case 4: p->set_speed(p,-2,0); break;
+				case 2: p->set_speed(p,0,-2); break;
+				case 8: p->set_speed(p,0,2); break;
+			}
+			
+			
+			//if död, break ur loop och sätt running = 0
+			
+			
 		}
+		//kod som väntar på timeout
+		current_points++; //öka poäng
+		ascii_init(); //byt till ascii (clearar också ascii displayen)
+		ascii_gotoxy(1,1);
+		ascii_write_char((char) current_points); //skriv ut antal poäng
+		
+		//addNewObstacles lr ngt
+		
+		systick_flag = 0; //kvittera avbrott I guess
+		
+		//if död, running = 0
+	}
+	
+	//Gör detta när man förlorat
+	graphic_clear_screen();
+	char *s;
+	char game_over_msg[] = "Game Over";
+	ascii_init(); //byt till ascii
+	ascii_gotoxy(1,1);
+	s = game_over_msg;
+	while(*s){
+		ascii_write_char(*s++);
 	}
 }
